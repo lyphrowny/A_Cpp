@@ -1,2 +1,8 @@
 .idea/
 cmake-build-debug/
+
+docs/*
+!docs/html/
+
+docs/html/*
+!docs/html/class*html
