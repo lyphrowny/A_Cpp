@@ -1,2 +1,7 @@
 .idea/
 cmake-build-debug/
+
+libs/.idea
+libs/cmake-build-debug
+libs/build/*
+!libs/build/libaddon.so
