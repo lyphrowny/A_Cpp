@@ -1,6 +1,6 @@
 #include "Evaluator.h"
 
-double Evaluator::evaluate(std::list<std::unique_ptr<Token>>& rpn) {
+double Evaluator::evaluate(std::list<std::unique_ptr<Token>>&& rpn) {
     std::stack<double> st;
     std::vector<double> args(2);
 

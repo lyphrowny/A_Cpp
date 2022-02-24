@@ -1,30 +1,13 @@
 #pragma once
 
 #include<string>
-#include <utility>
 #include<vector>
 #include<functional>
 
-//enum Precedence {
-//    PAREN,
-//    ADD = 1,
-//    SUB = 1,
-//    MUL = 2,
-//    DIV = 2,
-//    POWER = 3,
-//    FACT = 4,
-//    INV = 5
-//};
 
 enum Arity {
     UNARY,
     BINARY
-};
-
-enum Notation {
-    PREFIX,
-    INFIX,
-    POSTFIX
 };
 
 using Function = std::function<double(std::vector<double> const&)>;
@@ -34,7 +17,6 @@ private:
     int _precedence;
     std::string _name;
     Arity _arity;
-    Notation _notation;
     Function _func;
 
 public:
@@ -55,6 +37,3 @@ public:
 
     double calcFunc(std::vector<double> args) { return this->_func(args); }
 };
-
-
-
