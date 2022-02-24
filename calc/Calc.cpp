@@ -2,8 +2,14 @@
 
 #include "Calc.h"
 
+/**
+ * alias
+ */
 using dvec = std::vector<double> const;
 
+/**
+ * basic operations
+ */
 std::list<Operation> Calc::_ops = {
         {0, "(",     nullptr,                                      Arity::UNARY},
         {0, "CONST", nullptr,                                      Arity::UNARY},
@@ -27,6 +33,10 @@ std::list<Operation> Calc::_ops = {
         {6, "~",     [](dvec& args) { return -args[0]; },          Arity::UNARY}
 };
 
+/**
+ * constructor
+ * @param soPath alternative path for .so
+ */
 Calc::Calc(std::string soPath) {
     if (!soPath.empty())
         _soPath = std::move(soPath);
@@ -56,6 +66,11 @@ Calc::Calc(std::string soPath) {
         _opsMap[op.getName()] = std::make_shared<Operation>(op);
 }
 
+/**
+ * calculates the passed string
+ * @param toCalc string to calculate
+ * @return calculated value
+ */
 double Calc::calculate(std::string const& toCalc) {
     Tokenizer tokenizer(toCalc, _opsMap);
     return Evaluator::evaluate(std::move(tokenizer.tokenize()));

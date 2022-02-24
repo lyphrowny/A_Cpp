@@ -2,7 +2,10 @@
 
 #include "Tokenizer.h"
 
-
+/**
+ * splits the string on tokens in RPN
+ * @return list of tokens in RPN
+ */
 std::list<std::unique_ptr<Token>> Tokenizer::tokenize() {
     std::string tName;
     std::stack<std::unique_ptr<Token>> st;
