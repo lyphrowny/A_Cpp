@@ -30,18 +30,16 @@ int main() {
 //    for (auto&& token: tokens)
 //        tokenNames.insert(token.getName());
 
-    std::string input = "1.7980 + .1567869 +sin(449) -tan 48!";
+    std::string input = "1.7980 + ~.1567869 ^sin(449) -tan ~48!";
 
     for (auto&& token: tokenNames)
         std::cout << token << std::endl;
 
     Tokenizer tokenizer(input);
-    std::stack<Token> toks = tokenizer.tokenize();
-    while (!toks.empty()) {
-        auto tok = toks.top();
-        std::cout << tok << std::endl;
-        toks.pop();
-    }
+    std::list<Token> toks = tokenizer.tokenize();
+    for (auto&& tok : toks)
+        std::cout << tok << " ";
+    std::cout << std::endl;
 //    std::cout << (tokenizer.tokenize()) << std::endl;
     std::cout << "Hello, World!" << std::endl;
     return 0;
