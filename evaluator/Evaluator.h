@@ -4,7 +4,7 @@
 
 class Evaluator {
 public:
-    double evaluate(std::list<Token>& rpn);
+    static double evaluate(std::list<std::unique_ptr<Token>>& rpn);
 };
 
 

@@ -3,19 +3,27 @@
 #include<string>
 #include<stack>
 #include<list>
+#include<map>
+#include <utility>
 
 #include "../tokens/Token.h"
 
 class Tokenizer {
-    std::list<Token> _tokens;
+    std::list<std::unique_ptr<Token>> _tokens;
+    std::map<std::string, std::shared_ptr<Operation>> _availableOps;
     std::string _toTokenize;
 
 public:
-    explicit Tokenizer(std::string toTokenize) : _toTokenize(std::move(toTokenize)) {}
+    Tokenizer(std::string toTokenize,
+              std::map<std::string, std::shared_ptr<Operation>> availableOps) : _toTokenize(std::move(toTokenize)),
+                                                              _availableOps(
+                                                                      std::move(availableOps)) {}
 
-    std::list<Token>& tokenize();
+//    explicit Tokenizer(std::string toTokenize) : _toTokenize(std::move(toTokenize)) {}
 
-    static int _precedence(std::string const& tName);
+    std::list<std::unique_ptr<Token>> tokenize();
+
+//    static int _precedence(std::string const& tName);
 };
 
 

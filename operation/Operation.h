@@ -5,13 +5,16 @@
 #include<vector>
 #include<functional>
 
-enum Precedence {
-    PAREN,
-    FACT,
-    POWER,
-    MUL,
-    ADD
-};
+//enum Precedence {
+//    PAREN,
+//    ADD = 1,
+//    SUB = 1,
+//    MUL = 2,
+//    DIV = 2,
+//    POWER = 3,
+//    FACT = 4,
+//    INV = 5
+//};
 
 enum Arity {
     UNARY,
@@ -26,23 +29,32 @@ enum Notation {
 
 using Function = std::function<double(std::vector<double> const&)>;
 
-class Token {
+class Operation {
 private:
-    Precedence _precedence;
+    int _precedence;
     std::string _name;
     Arity _arity;
     Notation _notation;
     Function _func;
 
 public:
-    Token(Precedence const& precedence = ADD, std::string name = "", Arity const& arity = BINARY,
-          Notation const& notation = INFIX, Function func = nullptr) : _precedence(precedence),
-                                                                       _name(std::move(name)),
-                                                                       _arity(arity),
-                                                                       _notation(notation),
-                                                                       _func(std::move(func)) {}
+    Operation(const int precedence,
+              std::string name,
+              Function func = nullptr,
+              Arity const& arity = BINARY):
+              /*) : _precedence(precedence)*/
+                                                  _name(std::move(name)),
+                                                  _arity(arity),
+                                                  /*_notation(notation),*/
+                                                  _func(std::move(func)) {}
+
+    int getPrecedence() { return this->_precedence; }
 
     std::string& getName() { return this->_name; }
+
+    Arity& getArity() { return this->_arity; }
+
+    double calcFunc(std::vector<double> args) { return this->_func(args); }
 };
 
 
