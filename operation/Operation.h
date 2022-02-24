@@ -41,12 +41,11 @@ public:
     Operation(const int precedence,
               std::string name,
               Function func = nullptr,
-              Arity const& arity = BINARY):
-              /*) : _precedence(precedence)*/
-                                                  _name(std::move(name)),
-                                                  _arity(arity),
-                                                  /*_notation(notation),*/
-                                                  _func(std::move(func)) {}
+              Arity const& arity = BINARY) :
+                                            _precedence(precedence),
+                                            _name(std::move(name)),
+                                            _arity(arity),
+                                            _func(std::move(func)) {}
 
     int getPrecedence() { return this->_precedence; }
 
